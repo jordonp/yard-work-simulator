@@ -4,18 +4,20 @@
 #include "level.h"
 #include <GL/glew.h>
 #include <SDL.h>
+#include <string>
 
 class renderer
 {
 	level* current_level;
 	SDL_Window *mainwindow;
 	SDL_GLContext maincontext;
-	GLint attribute_coord2d, uniform_colour;
-	GLuint program;
+	
 
 public:
+	GLuint program;
 	renderer();
 	~renderer();
+	void set_level(level& level);
 	void render();
 };
 #endif

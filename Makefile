@@ -1,6 +1,6 @@
 GCC       := g++
 LDFLAGS   := -lGL -lGLEW `sdl2-config --libs`
-CCFLAGS   := -std=c++11 `sdl2-config --cflags`
+CCFLAGS   := -g -std=c++11 `sdl2-config --cflags`
 INCLUDES  := -I./include/
 SRC_DIR=src
 BIN_DIR=bin
