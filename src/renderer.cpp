@@ -97,7 +97,7 @@ renderer::renderer() : current_level(NULL) {
             delete log;
         }
     }
-
+    glEnable(GL_DEPTH_TEST);
     glUseProgram(program);
 }
 

@@ -32,6 +32,10 @@ public:
 	void set_scale(float x_scale, float y_scale, float z_scale);
 	void set_orientation(float angle, float axis_x, float axis_y, float axis_z);
 	glm::vec3 move(float x_amount, float y_amount, float z_amount);
+	glm::vec3 move_forward(float amount);
+	glm::vec3 move_backward(float amount);
+	glm::vec3 move_left(float amount);
+	glm::vec3 move_right(float amount);
 	glm::quat rotate(float angle, float axis_x, float axis_y, float axis_z);
 	bool collide(float point_x, float point_y, float point_z);
 	bool collide(game_object object);

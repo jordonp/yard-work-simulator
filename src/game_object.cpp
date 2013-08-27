@@ -31,10 +31,30 @@ glm::vec3 game_object::move(float x_amount, float y_amount, float z_amount) {
 	x += x_amount;
 	y += y_amount;
 	z += z_amount;
+	return glm::vec3(x, y, z);
+}
+
+glm::vec3 game_object::move_forward(float amount) {
+	glm::vec3 move_amount = glm::vec3(glm::mat4_cast(rotation) * glm::vec4(0.0f, 0.0f, -amount, 1.0f));
+	return move(move_amount.x, move_amount.y, move_amount.z);
+}
+
+glm::vec3 game_object::move_backward(float amount) {
+	return move_forward(-amount);
+}
+
+glm::vec3 game_object::move_left(float amount) {
+	glm::vec3 move_amount = glm::vec3(glm::mat4_cast(rotation) * glm::vec4(-amount, 0.0f, 0.0f, 1.0f));
+	return move(move_amount.x, move_amount.y, move_amount.z);
+}
+
+glm::vec3 game_object::move_right(float amount) {
+	return move_left(-amount);
 }
 
 glm::quat game_object::rotate(float angle, float axis_x, float axis_y, float axis_z) {
 	rotation = glm::quat_cast(glm::rotate(glm::mat4(1.0f), angle, glm::vec3(axis_x, axis_y, axis_z)) * glm::mat4_cast(rotation));
+	return rotation;
 }
 
 bool game_object::collide(float point_x, float point_y, float point_z) {
