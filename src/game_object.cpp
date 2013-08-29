@@ -44,7 +44,10 @@ glm::vec3 game_object::move_backward(float amount) {
 }
 
 glm::vec3 game_object::move_left(float amount) {
-	glm::vec3 move_amount = glm::vec3(glm::mat4_cast(rotation) * glm::vec4(-amount, 0.0f, 0.0f, 1.0f));
+	glm::vec3 forward = glm::vec3(glm::mat4_cast(rotation) * glm::vec4(0.0f, 0.0f, -1.0f, 1.0f));
+
+	glm::vec3 move_amount = amount * glm::normalize(glm::cross(glm::vec3(0.0f, 1.0f, 0.0f), forward));
+
 	return move(move_amount.x, move_amount.y, move_amount.z);
 }
 
