@@ -9,7 +9,7 @@
 
 using namespace std;
 
-renderer::renderer() : current_level(NULL) {
+renderer::renderer() : current_level(NULL), render_width(1280), render_height(800) {
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
  
@@ -17,7 +17,7 @@ renderer::renderer() : current_level(NULL) {
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
  
     mainwindow = SDL_CreateWindow(PROGRAM_NAME, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-        1280, 800, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+        render_width, render_height, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
  
     maincontext = SDL_GL_CreateContext(mainwindow);
 
@@ -121,4 +121,13 @@ void renderer::render() {
         current_level->render();
 
     SDL_GL_SwapWindow(mainwindow);
+}
+
+SDL_Window* renderer::get_window() {
+    return mainwindow;
+}
+
+void renderer::get_render_size(int& width, int& height) {
+    width = render_width;
+    height = render_height;
 }
